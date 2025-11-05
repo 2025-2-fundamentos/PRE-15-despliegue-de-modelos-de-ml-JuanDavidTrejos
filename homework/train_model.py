@@ -1,0 +1,39 @@
+# train_model.py
+
+"""Build, deploy and access a model using scikit-learn"""
+
+import pickle
+
+import pandas as pd  # type: ignore
+from sklearn.linear_model import LinearRegression  # type: ignore
+
+df = pd.read_csv("C:\\UNI\\2025-2\\FundamentosDeAnalitica\\PRE-15-despliegue-de-modelos-de-ml-JuanDavidTrejos\\files\\input\\house_data.csv", sep=",")
+
+features = df[
+    [
+        "bedrooms",
+        "bathrooms",
+        "sqft_living",
+        "sqft_lot",
+        "floors",
+        "waterfront",
+        "condition",
+    ]
+]
+
+target = df[["price"]]
+
+estimator = LinearRegression()
+estimator.fit(features, target)
+
+with open("homework/house_predictor.pkl", "wb") as file:
+    pickle.dump(estimator, file)
+    
+    
+    
+    
+    
+
+
+
+
